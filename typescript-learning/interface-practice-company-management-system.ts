@@ -217,7 +217,7 @@ let departments: Department[] = [
 ];
 
 // Calculate the combined salaries of a department
-function calculateDepartmentSalaries(department: Department) {
+function calculateDepartmentSalaries(department: Department): number {
   return department.employees.reduce((total, employee) => total + employee.salary, 0);
 }
 

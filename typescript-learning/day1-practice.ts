@@ -1,5 +1,5 @@
 // Rectangle calculator
-function calculateRectangleArea(side1: number, side2: number) {
+function calculateRectangleArea(side1: number, side2: number): number {
   return side1 * side2;
 }
 
@@ -42,8 +42,8 @@ const users: User[] = [
   },
 ];
 
-function findUsersOverAge(users: User[], age: number) {
-  return users.filter((user) => user.age > age);
+function findUsersOverAge(users: User[], age: number): User[] | null {
+  return users.filter((user) => user.age > age) || null;
 }
 
 console.log('find users:', findUsersOverAge(users, 25));
