@@ -42,3 +42,22 @@ const orders: Order[] = [
   { id: 'o4', userId: 'u2', total: 89, status: 'cancelled' },
   { id: 'o5', userId: 'u4', total: 2399, status: 'processing' },
 ];
+
+function searchByName<T extends { name: string }>(items: T[], searchString: string): T[] {
+  return items.filter((item) => item.name.toLowerCase().includes(searchString.toLowerCase()));
+}
+
+function sortByProperty<T>(items: T[], property: keyof T): T[] {
+  if (items.length === 0) return [];
+
+  if (typeof items[0][property] === 'number') {
+    return [...items].sort((a, b) => (a[property] as number) - (b[property] as number));
+  } else {
+    return [...items].sort((a, b) => (a[property] as string).localeCompare(b[property] as string));
+  }
+}
+
+// Testing functions
+console.log('searchByName(users, "d"):', searchByName(users, 'd'));
+
+console.log('sortByProperty(products, "category"):', sortByProperty(products, 'category'));
