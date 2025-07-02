@@ -1,0 +1,61 @@
+Week 1-2: Foundation (TypeScript + React Refs)
+Week 1: TypeScript Basics
+
+Days 1-3: Basic types, interfaces, generics
+Days 4-5: TypeScript with React (props, state, events)
+Days 6-7: Practice converting a small React project to TypeScript
+
+Week 2: React Refs Deep Dive
+
+Days 1-2: useRef basics, DOM manipulation
+Days 3-4: forwardRef and useImperativeHandle
+Days 5-7: Build a project combining TypeScript + refs (like a custom input component with focus management)
+
+Week 3: ESLint + Lazy Loading
+Days 1-3: ESLint Setup & Configuration
+
+Set up ESLint with TypeScript and React
+Learn popular rule sets (Airbnb, Standard)
+Configure for your projects
+
+Days 4-7: Lazy Loading Mastery
+
+React.lazy and Suspense
+Image lazy loading with Intersection Observer
+Code splitting strategies
+Performance measuring tools
+
+Week 4-5: GSAP Intensive
+Week 4: GSAP Fundamentals
+
+Basic animations (to, from, fromTo)
+Timelines and sequencing
+Easing and controls
+ScrollTrigger basics
+
+Week 5: Advanced GSAP
+
+Complex ScrollTrigger animations
+Morphing and path animations
+Performance optimization
+Integration with React
+
+Week 6: Integration & Portfolio Project
+
+Build a portfolio piece that showcases everything:
+
+TypeScript throughout
+Proper ESLint configuration
+Lazy loading implementation
+Stunning GSAP animations
+Clean ref usage
+
+
+
+Daily Schedule Suggestion:
+
+2-3 hours morning: Main topic study
+1 hour afternoon: Practice/coding
+30 minutes evening: Review and plan next day
+
+Weekend Focus: Build mini-projects to cement each week's learning.
