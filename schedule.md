@@ -30,16 +30,21 @@ _4 hours concentrated work daily, Sundays off_
 - Implement proper error handling with typed errors
 - Add comprehensive type definitions for all functions
 
-### Day 5 (Friday): Advanced TypeScript Patterns
+### Day 5 (Friday): Nuzlocke Tracker Build
 
-- Utility types, mapped types, conditional types
-- Refactor Day 4 project using advanced patterns
-- Study and implement complex TypeScript patterns from real codebases
+- Build Pokemon Nuzlocke run tracker with complex interfaces
+- Implement union types for game mechanics (status, types, game versions)
+- Create custom hooks with business logic validation (team limits, - encounter rules)
+- Add type guards for Pokemon data validation
+- Practice nested data structures and proper state management
 
-### Day 6 (Saturday): TypeScript Mastery Validation
+### Day 6 (Saturday): TypeScript Consolidation
 
-- Build something substantial from scratch using everything learned
-- Should feel confident reading any TypeScript codebase
+- Polish and extend Nuzlocke tracker with additional features
+- Add input validation and error handling for Pokemon operations
+- Implement data export/import functionality with proper typing
+- Review and refactor code for better TypeScript patterns
+- Test edge cases and improve user experience
 
 ### **Day 7 (Sunday): REST DAY**
 

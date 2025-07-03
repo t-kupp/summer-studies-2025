@@ -1,17 +1,10 @@
+import useTodos from '@/hooks/useTodos';
 import { useEffect, useState } from 'react';
 
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
-
 export default function TodoList() {
-  const [todos, setTodos] = useState<Todo[]>([]);
   const [textInput, setTextInput] = useState('');
-  const [isLoaded, setIsLoaded] = useState(false);
+  const { todos, addTodo, toggleCompleted, deleteTodo } = useTodos();
 
-  // Setting document title based on todo tasks amount
   useEffect(() => {
     const count = todos.length;
     if (count === 0) {
@@ -21,42 +14,9 @@ export default function TodoList() {
     }
   }, [todos]);
 
-  // Load todos from localstorage
-  useEffect(() => {
-    try {
-      const storedTodos = localStorage.getItem('todos');
-      if (storedTodos) {
-        setTodos(JSON.parse(storedTodos));
-      }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setIsLoaded(true);
-    }
-  }, []);
-
-  // Save todos to localstorage
-  useEffect(() => {
-    if (isLoaded) {
-      localStorage.setItem('todos', JSON.stringify(todos));
-    }
-  }, [todos, isLoaded]);
-
-  function addTodo() {
-    if (!textInput.trim()) return;
-    setTodos([...todos, { id: Date.now(), text: textInput, completed: false }]);
+  function handleAddTodo() {
+    addTodo(textInput);
     setTextInput('');
-  }
-
-  function toggleCompleted(id: number) {
-    setTodos(
-      todos.map((todo) => (todo.id === id ? { ...todo, completed: !todo.completed } : todo))
-    );
-  }
-
-  function deleteTodo(id: number) {
-    const filteredTodos = todos.filter((todo) => todo.id !== id);
-    setTodos(filteredTodos);
   }
 
   return (
@@ -70,7 +30,7 @@ export default function TodoList() {
           onChange={(e) => setTextInput(e.target.value)}
           value={textInput}
         />
-        <button className='border px-1' onClick={addTodo}>
+        <button className='border px-1' onClick={handleAddTodo}>
           Add
         </button>
       </div>
