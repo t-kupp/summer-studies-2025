@@ -17,7 +17,7 @@ export default function useNuzlockeRun() {
 
     if (
       run.pokemon.some(
-        (existingPokemon) => existingPokemon.name === pokemon.name,
+        (existingPokemon) => existingPokemon.species === pokemon.species,
       )
     ) {
       // check for duplicate pokemon
@@ -29,8 +29,7 @@ export default function useNuzlockeRun() {
     // check for duplicate location
     if (
       run.pokemon.some(
-        (existingPokemon) =>
-          existingPokemon.caughtLocation === pokemon.caughtLocation,
+        (existingPokemon) => existingPokemon.location === pokemon.location,
       )
     ) {
       throw new Error("A pokemon on this location has already been caught.");
@@ -72,6 +71,7 @@ export default function useNuzlockeRun() {
   }
 
   return {
+    run,
     initializeRun,
     catchPokemon,
     updatePokemonStatus,

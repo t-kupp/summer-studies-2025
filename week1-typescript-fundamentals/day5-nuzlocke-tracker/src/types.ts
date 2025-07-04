@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface NuzlockeRun {
   id: number;
   gameName: string;
@@ -7,9 +8,9 @@ interface NuzlockeRun {
 
 interface Pokemon {
   id: number;
-  name: string;
+  species: string;
   nickname?: string;
-  caughtLocation: string;
+  location: string;
   caughtTime: Date;
   status: "alive" | "fainted";
   types: PokemonType[];
