@@ -33,7 +33,7 @@ interface Pokemon {
   name: string;
   nickname?: string;
   location: string;
-  status: "alive" | "fainted" | "boxed";
+  status: "alive" | "fainted";
   types: PokemonType[];
   caughtAt: Date;
 }
@@ -43,8 +43,8 @@ interface NuzlockeRun {
   gameName: string;
   startDate: Date;
   caughtPokemon: Pokemon[];
-  casualties: Pokemon[];
-  encountersLog: EncounterLog[];
+  faintedPokemon: Pokemon[];
+  // encountersLog: EncounterLog[];
   rules: NuzlockeRules;
 }
 ```
