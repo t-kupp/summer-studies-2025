@@ -32,9 +32,8 @@ interface Pokemon {
   id: string;
   name: string;
   nickname?: string;
-  level: number;
   location: string;
-  status: 'alive' | 'fainted' | 'boxed';
+  status: "alive" | "fainted" | "boxed";
   types: PokemonType[];
   caughtAt: Date;
 }
@@ -43,9 +42,8 @@ interface NuzlockeRun {
   id: string;
   gameName: string;
   startDate: Date;
-  currentTeam: Pokemon[];
+  caughtPokemon: Pokemon[];
   casualties: Pokemon[];
-  boxedPokemon: Pokemon[];
   encountersLog: EncounterLog[];
   rules: NuzlockeRules;
 }
