@@ -6,7 +6,9 @@ export default function useNuzlockeRun() {
   // initialize run
   function initializeRun(gameName: string) {
     const newId = Date.now();
-    setRun({ id: newId, gameName, startDate: new Date(), pokemon: [] });
+    const newRun = { id: newId, gameName, startDate: new Date(), pokemon: [] };
+    setRun(newRun);
+    console.log("New run created:", newRun);
   }
 
   // catch pokemon
