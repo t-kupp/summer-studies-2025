@@ -40,7 +40,6 @@ export default function GameDisplay({
         location,
         caughtTime: new Date(),
         status: "alive",
-        types: ["Electric"],
       };
 
       catchPokemon(pokemon);

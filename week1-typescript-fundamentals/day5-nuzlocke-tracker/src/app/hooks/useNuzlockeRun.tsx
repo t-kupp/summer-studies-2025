@@ -4,8 +4,8 @@ export default function useNuzlockeRun() {
   const [run, setRun] = useLocalStorage<NuzlockeRun | null>(
     "nuzlocke-run",
     null,
+    (obj): obj is NuzlockeRun | null => obj === null || isNuzlockeRun(obj),
   );
-
   // initialize run
   function initializeRun(gameName: string) {
     const newId = Date.now();

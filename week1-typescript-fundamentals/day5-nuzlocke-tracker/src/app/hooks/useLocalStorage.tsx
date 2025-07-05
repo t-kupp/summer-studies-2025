@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-export default function useLocalStorage<T>(key: string, initialValue: T) {
+export default function useLocalStorage<T>(
+  key: string,
+  initialValue: T,
+  validator?: (obj: unknown) => obj is T,
+) {
   const [value, setValue] = useState<T>(initialValue); // Always start with initialValue
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -9,13 +13,21 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
     try {
       const storedItem = localStorage.getItem(key);
       if (storedItem) {
-        setValue(JSON.parse(storedItem));
+        const parsed = JSON.parse(storedItem);
+
+        // Use validator if provided
+        if (validator && !validator(parsed)) {
+          console.warn("Invalid localStorage data, using default");
+          return;
+        }
+
+        setValue(parsed);
       }
     } catch (error) {
       console.error("Error reading localStorage:", error);
     }
     setIsLoaded(true);
-  }, [key]);
+  }, [key, validator]);
 
   function setStoredValue(newValue: T) {
     setValue(newValue);
