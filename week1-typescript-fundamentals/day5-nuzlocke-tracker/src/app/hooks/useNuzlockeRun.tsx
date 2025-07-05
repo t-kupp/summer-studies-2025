@@ -1,10 +1,17 @@
+import { useCallback } from "react";
+import { isNuzlockeRun, NuzlockeRun, Pokemon } from "../../types";
 import useLocalStorage from "./useLocalStorage";
 
 export default function useNuzlockeRun() {
+  const nuzlockeValidator = useCallback(
+    (obj: unknown): obj is NuzlockeRun | null =>
+      obj === null || isNuzlockeRun(obj),
+    [],
+  );
   const [run, setRun] = useLocalStorage<NuzlockeRun | null>(
     "nuzlocke-run",
     null,
-    (obj): obj is NuzlockeRun | null => obj === null || isNuzlockeRun(obj),
+    nuzlockeValidator,
   );
   // initialize run
   function initializeRun(gameName: string) {
@@ -20,7 +27,8 @@ export default function useNuzlockeRun() {
 
     if (
       run.pokemon.some(
-        (existingPokemon) => existingPokemon.species === pokemon.species,
+        (existingPokemon: Pokemon) =>
+          existingPokemon.species === pokemon.species,
       )
     ) {
       // check for duplicate pokemon
@@ -32,7 +40,8 @@ export default function useNuzlockeRun() {
     // check for duplicate location
     if (
       run.pokemon.some(
-        (existingPokemon) => existingPokemon.location === pokemon.location,
+        (existingPokemon: Pokemon) =>
+          existingPokemon.location === pokemon.location,
       )
     ) {
       throw new Error("A pokemon on this location has already been caught.");
@@ -45,10 +54,12 @@ export default function useNuzlockeRun() {
   function updatePokemonStatus(pokemonId: number, status: Pokemon["status"]) {
     if (!run) throw new Error("Run not yet initialized.");
 
-    const pokemon = run.pokemon.find((pokemon) => pokemon.id === pokemonId);
+    const pokemon = run.pokemon.find(
+      (pokemon: Pokemon) => pokemon.id === pokemonId,
+    );
     if (!pokemon) throw new Error("Pokemon not found.");
 
-    const updatedPokemon = run.pokemon.map((existingPokemon) =>
+    const updatedPokemon = run.pokemon.map((existingPokemon: Pokemon) =>
       existingPokemon.id === pokemon.id
         ? { ...existingPokemon, status }
         : existingPokemon,
@@ -61,10 +72,12 @@ export default function useNuzlockeRun() {
   function updatePokemonNickname(pokemonId: number, nickname: string) {
     if (!run) throw new Error("Run not yet initialized.");
 
-    const pokemon = run.pokemon.find((pokemon) => pokemon.id === pokemonId);
+    const pokemon = run.pokemon.find(
+      (pokemon: Pokemon) => pokemon.id === pokemonId,
+    );
     if (!pokemon) throw new Error("Pokemon not found.");
 
-    const updatedPokemon = run.pokemon.map((existingPokemon) =>
+    const updatedPokemon = run.pokemon.map((existingPokemon: Pokemon) =>
       existingPokemon.id === pokemon.id
         ? { ...existingPokemon, nickname }
         : existingPokemon,

@@ -1,11 +1,11 @@
-interface NuzlockeRun {
+export interface NuzlockeRun {
   id: number;
   gameName: string;
   startDate: Date;
   pokemon: Pokemon[];
 }
 
-interface Pokemon {
+export interface Pokemon {
   id: number;
   species: string;
   nickname?: string;
@@ -34,7 +34,7 @@ interface Pokemon {
 //   | "Dark"
 //   | "Fairy";
 
-function isPokemon(obj: unknown): obj is Pokemon {
+export function isPokemon(obj: unknown): obj is Pokemon {
   // check if input is object and contains data
   if (typeof obj !== "object" || !obj) return false;
 
@@ -56,7 +56,7 @@ function isPokemon(obj: unknown): obj is Pokemon {
   );
 }
 
-function isNuzlockeRun(obj: unknown): obj is NuzlockeRun {
+export function isNuzlockeRun(obj: unknown): obj is NuzlockeRun {
   // check if input is object and contains data
   if (typeof obj !== "object" || !obj) return false;
 

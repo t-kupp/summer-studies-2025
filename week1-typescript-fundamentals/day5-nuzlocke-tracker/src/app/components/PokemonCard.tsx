@@ -1,3 +1,5 @@
+import { Pokemon } from "@/types";
+
 interface PokemonCardProps {
   pokemon: Pokemon;
   onStatusChange: (pokemonId: number, status: Pokemon["status"]) => void;

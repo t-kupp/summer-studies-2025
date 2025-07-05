@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NuzlockeRun, Pokemon } from "../../types";
 import PokemonCard from "./PokemonCard";
 
 interface GameDisplayProps {
@@ -19,7 +20,7 @@ export default function GameDisplay({
   const [location, setLocation] = useState("");
   const [error, setError] = useState("");
 
-  if (!run) return;
+  if (!run) return null;
 
   function handleAddPokemon() {
     if (!species.trim()) {
@@ -53,11 +54,11 @@ export default function GameDisplay({
   }
 
   const alivePokemon = run.pokemon.filter(
-    (pokemon) => pokemon.status === "alive",
+    (pokemon: Pokemon) => pokemon.status === "alive",
   );
 
   const faintedPokemon = run.pokemon.filter(
-    (pokemon) => pokemon.status === "fainted",
+    (pokemon: Pokemon) => pokemon.status === "fainted",
   );
 
   return (
