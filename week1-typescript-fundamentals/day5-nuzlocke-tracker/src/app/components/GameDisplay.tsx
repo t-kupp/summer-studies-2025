@@ -3,9 +3,14 @@ import { useState } from "react";
 interface GameDisplayProps {
   run: NuzlockeRun | null;
   catchPokemon: (pokemon: Pokemon) => void;
+  deleteRun: () => void;
 }
 
-export default function GameDisplay({ run, catchPokemon }: GameDisplayProps) {
+export default function GameDisplay({
+  run,
+  catchPokemon,
+  deleteRun,
+}: GameDisplayProps) {
   const [species, setSpecies] = useState("");
   const [nickname, setNickname] = useState("");
   const [location, setLocation] = useState("");
@@ -46,8 +51,13 @@ export default function GameDisplay({ run, catchPokemon }: GameDisplayProps) {
   if (run)
     return (
       <div className="flex flex-col gap-2">
-        {/* game name  */}
-        <h1 className="text-2xl font-bold">{run.gameName}</h1>
+        {/* game name and delete button  */}
+        <div className="flex justify-between">
+          <h1 className="text-2xl font-bold">{run.gameName}</h1>
+          <button onClick={deleteRun} className="border px-2">
+            Delete run
+          </button>
+        </div>
         {/* show available pokemon  */}
         <div className="mx-auto flex min-h-28 w-full flex-wrap gap-4 border p-4">
           {run.pokemon.map((pokemon) => (

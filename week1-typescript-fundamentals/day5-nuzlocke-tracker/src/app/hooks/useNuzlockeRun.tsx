@@ -1,7 +1,10 @@
-import { useState } from "react";
+import useLocalStorage from "./useLocalStorage";
 
 export default function useNuzlockeRun() {
-  const [run, setRun] = useState<NuzlockeRun | null>(null);
+  const [run, setRun] = useLocalStorage<NuzlockeRun | null>(
+    "nuzlocke-run",
+    null,
+  );
 
   // initialize run
   function initializeRun(gameName: string) {
@@ -70,11 +73,16 @@ export default function useNuzlockeRun() {
     setRun({ ...run, pokemon: updatedPokemon });
   }
 
+  // delete run
+  function deleteRun() {
+    setRun(null);
+  }
   return {
     run,
     initializeRun,
     catchPokemon,
     updatePokemonStatus,
     updatePokemonNickname,
+    deleteRun,
   };
 }
