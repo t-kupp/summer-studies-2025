@@ -4,12 +4,14 @@ interface GameDisplayProps {
   run: NuzlockeRun | null;
   catchPokemon: (pokemon: Pokemon) => void;
   deleteRun: () => void;
+  updatePokemonStatus: (pokemonId: number, status: Pokemon["status"]) => void;
 }
 
 export default function GameDisplay({
   run,
   catchPokemon,
   deleteRun,
+  updatePokemonStatus,
 }: GameDisplayProps) {
   const [species, setSpecies] = useState("");
   const [nickname, setNickname] = useState("");
@@ -58,15 +60,40 @@ export default function GameDisplay({
             Delete run
           </button>
         </div>
-        {/* show available pokemon  */}
-        <div className="mx-auto flex min-h-28 w-full flex-wrap gap-4 border p-4">
-          {run.pokemon.map((pokemon) => (
-            <div key={pokemon.id} className="">
-              <p>{pokemon.species}</p>
-              {pokemon.nickname ? <p>{pokemon.nickname}</p> : <br />}
-              <p>{pokemon.location}</p>
-            </div>
-          ))}
+        {/* show available pokemon pokemon  */}
+        <div className="grid grid-cols-2 gap-4">
+          {/* alive */}
+          <div className="border p-4">
+            {run.pokemon
+              .filter((pokemon) => pokemon.status === "alive")
+              .map((pokemon) => (
+                <div key={pokemon.id}>
+                  <p>{pokemon.species}</p>
+                  <button
+                    className="border px-2"
+                    onClick={() => updatePokemonStatus(pokemon.id, "fainted")}
+                  >
+                    Fainted
+                  </button>
+                </div>
+              ))}
+          </div>
+          {/* fainted */}
+          <div className="border p-4">
+            {run.pokemon
+              .filter((pokemon) => pokemon.status === "fainted")
+              .map((pokemon) => (
+                <div key={pokemon.id}>
+                  <p>{pokemon.species}</p>
+                  <button
+                    className="border px-2"
+                    onClick={() => updatePokemonStatus(pokemon.id, "alive")}
+                  >
+                    Alive
+                  </button>
+                </div>
+              ))}
+          </div>
         </div>
         {/* catch new pokemon form  */}
         <div>
