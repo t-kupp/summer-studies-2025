@@ -71,9 +71,11 @@ export default function GameDisplay({
         </button>
       </div>
       {/* show available pokemon pokemon  */}
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-4">
+        <h1 className="font-bold">Alive</h1>
+        <h1 className="font-bold">Fainted</h1>
         {/* alive  */}
-        <div>
+        <div className="flex flex-wrap gap-4 border p-4">
           {alivePokemon.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
@@ -83,7 +85,7 @@ export default function GameDisplay({
           ))}
         </div>
         {/* fainted  */}
-        <div>
+        <div className="flex flex-wrap gap-4 border p-4">
           {faintedPokemon.map((pokemon) => (
             <PokemonCard
               key={pokemon.id}
