@@ -49,7 +49,7 @@ export default function GameDisplay({ run, catchPokemon }: GameDisplayProps) {
         {/* game name  */}
         <h1 className="text-2xl font-bold">{run.gameName}</h1>
         {/* show available pokemon  */}
-        <div className="mx-auto grid min-h-28 w-full max-w-xl grid-cols-6 border p-4">
+        <div className="mx-auto flex min-h-28 w-full flex-wrap gap-4 border p-4">
           {run.pokemon.map((pokemon) => (
             <div key={pokemon.id} className="">
               <p>{pokemon.species}</p>
