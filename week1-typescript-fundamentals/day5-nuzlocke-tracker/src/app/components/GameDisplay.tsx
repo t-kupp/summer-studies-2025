@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PokemonCard from "./PokemonCard";
 
 interface GameDisplayProps {
   run: NuzlockeRun | null;
@@ -17,6 +18,8 @@ export default function GameDisplay({
   const [nickname, setNickname] = useState("");
   const [location, setLocation] = useState("");
   const [error, setError] = useState("");
+
+  if (!run) return;
 
   function handleAddPokemon() {
     if (!species.trim()) {
@@ -50,84 +53,79 @@ export default function GameDisplay({
     }
   }
 
-  if (run)
-    return (
-      <div className="flex flex-col gap-2">
-        {/* game name and delete button  */}
-        <div className="flex justify-between">
-          <h1 className="text-2xl font-bold">{run.gameName}</h1>
-          <button onClick={deleteRun} className="border px-2">
-            Delete run
-          </button>
-        </div>
-        {/* show available pokemon pokemon  */}
-        <div className="grid grid-cols-2 gap-4">
-          {/* alive */}
-          <div className="border p-4">
-            {run.pokemon
-              .filter((pokemon) => pokemon.status === "alive")
-              .map((pokemon) => (
-                <div key={pokemon.id}>
-                  <p>{pokemon.species}</p>
-                  <button
-                    className="border px-2"
-                    onClick={() => updatePokemonStatus(pokemon.id, "fainted")}
-                  >
-                    Fainted
-                  </button>
-                </div>
-              ))}
-          </div>
-          {/* fainted */}
-          <div className="border p-4">
-            {run.pokemon
-              .filter((pokemon) => pokemon.status === "fainted")
-              .map((pokemon) => (
-                <div key={pokemon.id}>
-                  <p>{pokemon.species}</p>
-                  <button
-                    className="border px-2"
-                    onClick={() => updatePokemonStatus(pokemon.id, "alive")}
-                  >
-                    Alive
-                  </button>
-                </div>
-              ))}
-          </div>
-        </div>
-        {/* catch new pokemon form  */}
+  const alivePokemon = run.pokemon.filter(
+    (pokemon) => pokemon.status === "alive",
+  );
+
+  const faintedPokemon = run.pokemon.filter(
+    (pokemon) => pokemon.status === "fainted",
+  );
+
+  return (
+    <div className="flex flex-col gap-2">
+      {/* game name and delete button  */}
+      <div className="flex justify-between">
+        <h1 className="text-2xl font-bold">{run.gameName}</h1>
+        <button onClick={deleteRun} className="border px-2">
+          Delete run
+        </button>
+      </div>
+      {/* show available pokemon pokemon  */}
+      <div className="grid grid-cols-2">
+        {/* alive  */}
         <div>
-          <div className="grid w-fit grid-cols-[auto_auto] gap-2">
-            <label htmlFor="species">Species</label>
-            <input
-              className="border"
-              type="text"
-              id="species"
-              onChange={(e) => setSpecies(e.target.value)}
-              value={species}
+          {alivePokemon.map((pokemon) => (
+            <PokemonCard
+              key={pokemon.id}
+              pokemon={pokemon}
+              onStatusChange={updatePokemonStatus}
             />
-            <label htmlFor="nickname">Nickname</label>
-            <input
-              className="border"
-              type="text"
-              id="nickname"
-              onChange={(e) => setNickname(e.target.value)}
-              value={nickname}
+          ))}
+        </div>
+        {/* fainted  */}
+        <div>
+          {faintedPokemon.map((pokemon) => (
+            <PokemonCard
+              key={pokemon.id}
+              pokemon={pokemon}
+              onStatusChange={updatePokemonStatus}
             />
-            <label htmlFor="location">Location</label>
-            <input
-              className="border"
-              type="text"
-              id="location"
-              onChange={(e) => setLocation(e.target.value)}
-              value={location}
-            />
-          </div>
-          {error && <p>{error}</p>}
-          <button className="border px-2" onClick={handleAddPokemon}>
-            Add
-          </button>
+          ))}
         </div>
       </div>
-    );
+      {/* catch new pokemon form  */}
+      <div>
+        <div className="grid w-fit grid-cols-[auto_auto] gap-2">
+          <label htmlFor="species">Species</label>
+          <input
+            className="border"
+            type="text"
+            id="species"
+            onChange={(e) => setSpecies(e.target.value)}
+            value={species}
+          />
+          <label htmlFor="nickname">Nickname</label>
+          <input
+            className="border"
+            type="text"
+            id="nickname"
+            onChange={(e) => setNickname(e.target.value)}
+            value={nickname}
+          />
+          <label htmlFor="location">Location</label>
+          <input
+            className="border"
+            type="text"
+            id="location"
+            onChange={(e) => setLocation(e.target.value)}
+            value={location}
+          />
+        </div>
+        {error && <p>{error}</p>}
+        <button className="border px-2" onClick={handleAddPokemon}>
+          Add
+        </button>
+      </div>
+    </div>
+  );
 }
