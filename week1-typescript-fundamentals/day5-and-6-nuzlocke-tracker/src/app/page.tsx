@@ -5,8 +5,7 @@ import NewRunForm from "./components/NewRunForm";
 import useNuzlockeRun from "./hooks/useNuzlockeRun";
 
 export default function Home() {
-  const { run, initializeRun, catchPokemon, deleteRun, updatePokemonStatus } =
-    useNuzlockeRun();
+  const { run, initializeRun, catchPokemon, deleteRun, updatePokemonStatus } = useNuzlockeRun();
 
   return (
     <div className="mx-auto max-w-7xl p-4">

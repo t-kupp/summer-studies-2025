@@ -53,13 +53,9 @@ export default function GameDisplay({
     }
   }
 
-  const alivePokemon = run.pokemon.filter(
-    (pokemon: Pokemon) => pokemon.status === "alive",
-  );
+  const alivePokemon = run.pokemon.filter((pokemon: Pokemon) => pokemon.status === "alive");
 
-  const faintedPokemon = run.pokemon.filter(
-    (pokemon: Pokemon) => pokemon.status === "fainted",
-  );
+  const faintedPokemon = run.pokemon.filter((pokemon: Pokemon) => pokemon.status === "fainted");
 
   return (
     <div className="flex flex-col gap-2">
@@ -77,21 +73,13 @@ export default function GameDisplay({
         {/* alive  */}
         <div className="flex flex-wrap gap-4 border p-4">
           {alivePokemon.map((pokemon) => (
-            <PokemonCard
-              key={pokemon.id}
-              pokemon={pokemon}
-              onStatusChange={updatePokemonStatus}
-            />
+            <PokemonCard key={pokemon.id} pokemon={pokemon} onStatusChange={updatePokemonStatus} />
           ))}
         </div>
         {/* fainted  */}
         <div className="flex flex-wrap gap-4 border p-4">
           {faintedPokemon.map((pokemon) => (
-            <PokemonCard
-              key={pokemon.id}
-              pokemon={pokemon}
-              onStatusChange={updatePokemonStatus}
-            />
+            <PokemonCard key={pokemon.id} pokemon={pokemon} onStatusChange={updatePokemonStatus} />
           ))}
         </div>
       </div>
