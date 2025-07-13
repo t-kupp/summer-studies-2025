@@ -30,6 +30,12 @@ export default function useProjects() {
 
   function addProject(projectData: Omit<Project, "id" | "createdAt">) {
     try {
+      if (!projectData.title.trim()) {
+        throw new Error("Title is required");
+      }
+      if (!projectData.description.trim()) {
+        throw new Error("Description is required");
+      }
       const newProject = {
         ...projectData,
         id: Date.now().toString(),
