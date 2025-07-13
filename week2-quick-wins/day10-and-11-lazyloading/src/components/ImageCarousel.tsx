@@ -65,8 +65,8 @@ export default function ImageCarousel() {
             key={index}
             src={imageSrc}
             alt={`Image ${index + 1}`}
-            height={300}
-            width={400}
+            height={600}
+            width={800}
             className="object-cover"
           />
         ))}

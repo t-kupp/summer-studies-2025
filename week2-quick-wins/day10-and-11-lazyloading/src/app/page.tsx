@@ -1,32 +1,32 @@
 "use client";
 
-import { lazy, useState } from "react";
+// import { lazy, useState } from "react";
 import ImageCarousel from "../components/ImageCarousel";
 
-type ActivePage = "dashboard" | "profile" | "analytics" | "settings";
+// type ActivePage = "dashboard" | "profile" | "analytics" | "settings";
 
-const Dashboard = lazy(() => import("../components/Dashboard"));
-const Profile = lazy(() => import("../components/Profile"));
-const Analytics = lazy(() => import("../components/Analytics"));
-const Settings = lazy(() => import("../components/Settings"));
+// const Dashboard = lazy(() => import("../components/Dashboard"));
+// const Profile = lazy(() => import("../components/Profile"));
+// const Analytics = lazy(() => import("../components/Analytics"));
+// const Settings = lazy(() => import("../components/Settings"));
 
 export default function Home() {
-  const [activePage, setActivePage] = useState<ActivePage>("dashboard");
+  // const [activePage, setActivePage] = useState<ActivePage>("dashboard");
 
-  const renderPage = () => {
-    switch (activePage) {
-      case "dashboard":
-        return <Dashboard />;
-      case "profile":
-        return <Profile />;
-      case "analytics":
-        return <Analytics />;
-      case "settings":
-        return <Settings />;
-      default:
-        return <Dashboard />;
-    }
-  };
+  // const renderPage = () => {
+  //   switch (activePage) {
+  //     case "dashboard":
+  //       return <Dashboard />;
+  //     case "profile":
+  //       return <Profile />;
+  //     case "analytics":
+  //       return <Analytics />;
+  //     case "settings":
+  //       return <Settings />;
+  //     default:
+  //       return <Dashboard />;
+  //   }
+  // };
 
   return <ImageCarousel />;
 

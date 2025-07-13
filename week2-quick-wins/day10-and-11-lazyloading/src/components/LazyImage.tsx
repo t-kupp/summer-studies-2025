@@ -25,6 +25,7 @@ export default function LazyImage({ src, alt, height, width, className }: LazyIm
       height={height}
       className={className}
       placeholder="blur"
+      loading="lazy"
     />
   );
 }
