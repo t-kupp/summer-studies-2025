@@ -1,3 +1,5 @@
+import { useId } from "react";
+
 interface TextInputProps {
   title: string;
   onChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>;
@@ -20,7 +22,7 @@ export default function LabeledInput({
   select = false,
   options = [""],
 }: TextInputProps) {
-  const id = `${title.toLowerCase()}-${Date.now().toString()}`;
+  const id = useId();
 
   if (select) {
     return (

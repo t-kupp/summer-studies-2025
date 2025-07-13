@@ -17,6 +17,7 @@ export default function AddProjectForm() {
     status: "draft",
     featured: false,
   });
+  const [submitButtonText, setSubmitButtonText] = useState("Add");
   const { addProject, error } = useProjects();
 
   function updateField<T>(field: keyof ProjectFormData, value: T) {
@@ -77,12 +78,30 @@ export default function AddProjectForm() {
     updateField("images", updated);
   }
 
-  function handleSubmit() {
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     addProject(formData);
+    setFormData({
+      title: "",
+      description: "",
+      technologies: [],
+      liveUrl: "",
+      githubUrl: "",
+      images: [],
+      status: "draft",
+      featured: false,
+    });
+    setSubmitButtonText("Success!");
+    setTimeout(() => {
+      setSubmitButtonText("Add");
+    }, 3000);
   }
 
   return (
-    <form className="border-border flex max-w-md flex-col gap-4 rounded border p-4">
+    <form
+      onSubmit={handleSubmit}
+      className="border-border flex max-w-md flex-col gap-4 rounded border p-4"
+    >
       <h1 className="text-xl font-bold">Add Project</h1>
 
       {/* Title  */}
@@ -209,12 +228,8 @@ export default function AddProjectForm() {
 
       {/* Error and submit  */}
       {error && <div className="rounded-xs border bg-red-200 px-2 py-2 text-red-800">{error}</div>}
-      <button
-        type="button"
-        onClick={handleSubmit}
-        className="border-border mx-auto w-1/3 rounded border px-2"
-      >
-        Add
+      <button type="submit" className="border-border mx-auto w-1/3 rounded border px-2">
+        {submitButtonText}
       </button>
     </form>
   );
