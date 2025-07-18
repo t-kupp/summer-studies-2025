@@ -26,8 +26,8 @@ export default function Exercise24_InteractiveEasingController() {
     <div>
       Exercise24_InteractiveEasingController
       <div ref={boxRef} className="box"></div>
-      <div className="flex flex-col">
-        <select onChange={(e) => setEase(e.target.value)}>
+      <div className="flex flex-col gap-2 my-2">
+        <select className="border rounded p-1" onChange={(e) => setEase(e.target.value)}>
           <option value="power1.in">power1.in</option>
           <option value="power1.out">power1.out</option>
           <option value="power1.inOut">power1.inOut</option>
