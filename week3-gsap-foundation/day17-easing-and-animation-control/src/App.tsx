@@ -1,4 +1,4 @@
-import Exercise26_CustomEasingFunction from "./components/Exercise26_CustomEasingFunction";
+import Exercise27_GestureResponsiveAnimations from "./components/Exercise27_GestureResponsiveAnimations";
 
 function App() {
   return (
@@ -6,7 +6,8 @@ function App() {
       {/* <Exercise23_EasingShowcase /> */}
       {/* <Exercise24_InteractiveEasingController /> */}
       {/* <Exercise25_CallbackChainSystem /> */}
-      <Exercise26_CustomEasingFunction />
+      {/* <Exercise26_CustomEasingFunction /> */}
+      <Exercise27_GestureResponsiveAnimations />
     </div>
   );
 }
