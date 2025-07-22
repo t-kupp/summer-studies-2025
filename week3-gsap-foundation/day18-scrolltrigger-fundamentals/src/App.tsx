@@ -1,3 +1,4 @@
+import Exercise31_ScrollTriggerWithTimeline from "./components/Exercise31_ScrollTriggerWithTimeline";
 import Exercise32_ProgressBasedAnimation from "./components/Exercise32_ProgressBasedAnimation";
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
       {/* <Exercise28_ParallaxEffect /> */}
       {/* <Exercise29_BatchScrollTriggers />*/}
       {/* <Exercise30_RefreshAndInvalidate /> */}
-      {/* <Exercise31_ScrollTriggerWithTimeline /> */}
+      <Exercise31_ScrollTriggerWithTimeline />
       <Exercise32_ProgressBasedAnimation />
     </div>
   );
