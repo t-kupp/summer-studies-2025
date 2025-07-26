@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Mori, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -42,6 +42,13 @@ p {
 
 h1 {
   line-height: 1;
+}
+
+@font-face {
+  font-family: "Mori";
+  src: url("/fonts/PPMori-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
 }
 
 @media (prefers-color-scheme: light) {

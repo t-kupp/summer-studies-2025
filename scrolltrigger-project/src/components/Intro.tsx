@@ -15,67 +15,88 @@ export default function Intro() {
       const introTl = gsap.timeline();
       introTl
         // Phase 1
-        .to(".intro-container", { y: -100 })
+        .to(".intro-container", { y: -100, ease: "power1.in" })
         .to(".intro-brand", { opacity: 0, y: -30 }, "<")
-        .from(".hl1", { x: "-80%", scale: 1.15, y: -10, ease: "power1.in" }, "<")
-        .from(".hl2", { x: "68%", scale: 1.15, y: 10, ease: "power1.in" }, "<")
+        .from(".hl1", { x: "-27vw", y: -10, ease: "power1.in" }, "<")
+        .from(".hl2", { x: "20vw", y: 10, ease: "power1.in" }, "<")
         .to(".intro-p", { y: -30, stagger: 0.01 }, "<")
         .to(".intro-p-container", { y: -20 }, "<")
         .to(".ver1", { height: "0px" }, "<")
         .to(".ver2", { height: "0px" }, "<")
 
         // Phase 2
-        .to(".hl1", { y: -250, fontSize: "5vw", ease: "power1.out" })
-        .to(".hl2", { y: -250, fontSize: "5vw", ease: "power1.out" }, "<")
-        .fromTo(".desc", { y: 300 }, { y: -900, duration: 1.5 }, "<");
+        .to(".hl1", {
+          y: -250,
+          width: "15vw",
+          ease: "power1.out",
+        })
+        .to(".hl2", { y: -250, width: "40vw", ease: "power1.out" }, "<")
+        .to(".desc", { y: "-100vh", duration: 1.5, ease: "none" }, "<-0.2");
 
       masterTl.add(introTl);
     },
-    { dependencies: [masterTl], scope: introRef }
+    { dependencies: [masterTl], scope: introRef },
   );
 
   return (
-    <div className="text-center h-screen" ref={introRef}>
-      <div className="h-full w-full absolute top-0 left-0 bg-gradient-to-b from-blue-500 to-red-500">
-        <img src={"/a_statue_of_a_woman_with_wings_and_a_plant.png"} alt="" />
+    <div className="h-screen text-center" ref={introRef}>
+      {/* background video  */}
+      <div className="absolute top-[-10vh] left-[-10vw] h-full w-full bg-gradient-to-b">
+        <iframe
+          className="h-[120vh] w-[120vw] bg-neutral-700"
+          // src="https://www.youtube.com/embed/4OiMOHRDs14?autoplay=1&mute=1"
+        ></iframe>
       </div>
-      <div className="intro-container flex flex-col items-center justify-center h-full">
-        <h2 className="intro-brand absolute left-[20vw] top-[20vh] font-bold text-xl">
-          brand name
-        </h2>
-        <h1 className="hl1 text-[8vw]">Upper text</h1>
-        <h1 className="hl2 text-[8vw]">Bottom text</h1>
-        <div className="intro-p-container absolute left-[15vw] top-[60vh]">
+      {/* intro container  */}
+      <div className="intro-container flex h-full flex-col items-center justify-center">
+        {/* ghibli logo */}
+        <img
+          src="/ghibli.png"
+          className="intro-brand absolute top-[23vh] left-[12vw] w-[10vw] opacity-50 invert"
+        ></img>
+        {/* princess logo container*/}
+        <div className="hl1 relative">
+          <img src="/princess.svg" className="w-[35vw] invert" />
+        </div>
+        {/* mononoke logo */}
+        <img src="/mononoke.svg" className="hl2 w-[48vw] invert"></img>
+        {/* quote text */}
+        <div className="intro-p-container absolute bottom-[45vh] left-[12vw] text-white opacity-70">
           <div className="overflow-hidden">
-            <p className="intro-p">Lorem ipsum dolor sit amet,</p>
+            <p className="intro-p !text-xs">“You cannot change fate.</p>
           </div>
           <div className="overflow-hidden">
-            <p className="intro-p">sed do eiusmod tempor incididunt ut.</p>
+            <p className="intro-p !text-xs">
+              However, you can rise to meet it,
+            </p>
           </div>
           <div className="overflow-hidden">
-            <p className="intro-p">Ut enim ad minim veniam,</p>
-          </div>
-          <div className="overflow-hidden">
-            <p className="intro-p">laboris nisi ut aliquip.</p>
+            <p className="intro-p !text-xs">if you so choose.”</p>
           </div>
         </div>
-        <div className="absolute left-[35vw] bottom-[70vh] overflow-hidden flex justify-end">
-          <p style={{ writingMode: "vertical-rl" }} className="ver1 text-nowrap !origin-bottom">
-            vertical text one vertical text one
+        <div className="absolute bottom-[67vh] left-[31vw] flex justify-end overflow-hidden">
+          <p
+            style={{ writingMode: "vertical-rl" }}
+            className="ver1 font-bold text-nowrap text-white opacity-70"
+          >
+            株式会社スタジオジブリ
           </p>
         </div>
-        <div className="absolute left-[35vw] top-[55vh] overflow-hidden">
-          <p style={{ writingMode: "vertical-rl" }} className="ver2 text-nowrap">
-            vertical text two vertical text two
+        <div className="absolute top-[48vh] left-[31vw] overflow-hidden">
+          <p
+            style={{ writingMode: "vertical-rl" }}
+            className="ver2 font-bold text-nowrap text-white opacity-70"
+          >
+            もののけ姫
           </p>
         </div>
-        <p className="desc max-w-4xl !text-lg absolute bottom-0 text-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-          sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum."
+        <p className="desc absolute bottom-[-100px] max-w-4xl translate-y-[100%] text-left !text-lg text-white opacity-70">
+          In ancient times, the land lay covered in forests, where, from ages
+          long past, dwelt the spirits of the gods. Back then, man and beast
+          lived in harmony, but as time went by, most of the great forests were
+          destroyed. Those that remained were guarded by gigantic beasts who
+          owed their allegiances to the Great Forest Spirit. For those were the
+          days of gods and of demons...
         </p>
       </div>
     </div>

@@ -1,7 +1,13 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { createContext, useContext, useState, type ReactNode, type RefObject } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from "react";
 
 interface GSAPContextValues {
   masterTl: GSAPTimeline | undefined;
@@ -12,9 +18,14 @@ interface GSAPProviderProps {
   containerRef: RefObject<HTMLDivElement | null>;
 }
 
-export const GSAPContext = createContext<GSAPContextValues | undefined>(undefined);
+export const GSAPContext = createContext<GSAPContextValues | undefined>(
+  undefined,
+);
 
-export default function GSAPProvider({ children, containerRef }: GSAPProviderProps) {
+export default function GSAPProvider({
+  children,
+  containerRef,
+}: GSAPProviderProps) {
   const [masterTl, setMasterTl] = useState<GSAPTimeline>();
 
   useGSAP(() => {
@@ -37,7 +48,9 @@ export default function GSAPProvider({ children, containerRef }: GSAPProviderPro
     };
   }, [containerRef]);
 
-  return <GSAPContext.Provider value={{ masterTl }}>{children}</GSAPContext.Provider>;
+  return (
+    <GSAPContext.Provider value={{ masterTl }}>{children}</GSAPContext.Provider>
+  );
 }
 
 export const useGSAPContext = () => {
