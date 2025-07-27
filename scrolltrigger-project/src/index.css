@@ -1,4 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=GFS+Didot&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-gfs: "GFS Didot, serif";
+}
 
 :root {
   font-family: Mori, Avenir, Helvetica, Arial, sans-serif;
@@ -9,16 +14,22 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* * {

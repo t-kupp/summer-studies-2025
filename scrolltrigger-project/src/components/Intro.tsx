@@ -119,14 +119,16 @@ export default function Intro() {
 
   // DOM rendering
   return (
-    <div className="h-screen text-center" ref={introRef}>
+    <div
+      className="absolute top-0 left-0 h-full w-full bg-black text-center"
+      ref={introRef}
+    >
       {/* background video  */}
-      <div className="absolute top-[-10vh] left-[-10vw] h-full w-full bg-gradient-to-b">
-        <iframe
-          className="h-[120vh] w-[120vw] bg-neutral-700 brightness-75"
-          src="https://www.youtube.com/embed/4OiMOHRDs14?autoplay=1&mute=1"
-        ></iframe>
-      </div>
+
+      <iframe
+        className="fixed top-0 left-0 h-screen w-screen bg-neutral-700 brightness-75"
+        src="https://www.youtube.com/embed/4OiMOHRDs14?autoplay=1&mute=1"
+      ></iframe>
 
       {/* intro container  */}
       <div className="intro-container flex h-full flex-col items-center justify-center">
