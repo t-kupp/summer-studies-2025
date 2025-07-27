@@ -38,7 +38,7 @@ export default function GSAPProvider({
         scrub: true,
         pin: true,
         start: "center center",
-        end: `${window.innerWidth * 2}px`,
+        end: `${window.innerHeight * 5}px`,
       },
     });
     setMasterTl(tl);

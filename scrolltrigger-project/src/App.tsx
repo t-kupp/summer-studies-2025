@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import Characters from "./components/Characters";
 import Intro from "./components/Intro";
 import GSAPProvider from "./context/GSAPContext";
 
@@ -11,6 +12,7 @@ function App() {
       </div> */}
       <div className="h-full w-full" ref={containerRef}>
         <Intro />
+        <Characters />
       </div>
     </GSAPProvider>
   );

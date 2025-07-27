@@ -54,8 +54,9 @@ export default function Intro() {
       if (!masterTl) return;
 
       const introTl = gsap.timeline();
+
+      // Phase 1
       introTl
-        // Phase 1
         .to(".intro-container", { y: -200, ease: "power1.in" })
         .to(".intro-brand", { opacity: 0, y: -30 }, "<")
         .to(
@@ -65,7 +66,7 @@ export default function Intro() {
               window.innerWidth / 2 -
               h1Position.x -
               (window.innerWidth / 100) * 15,
-            y: 50,
+            y: "5vh",
             scale: "0.3",
             ease: "power1.in",
           },
@@ -92,15 +93,17 @@ export default function Intro() {
 
         // Phase 2
         .to(".hl1", {
-          y: -(h1Position.y - h1Size.y - 150),
-          scale: "*=0.8",
+          y: 0,
+          top: 150 + h1Size.y,
+          scale: "*=0.7",
           ease: "power1.out",
         })
         .to(
           ".hl2",
           {
-            y: -(h1Position.y - h1Size.y - 80),
-            scale: "*=0.8",
+            y: 0,
+            top: 160 + h1Size.y,
+            scale: "0.5",
             ease: "power1.out",
           },
           "<",
@@ -120,7 +123,7 @@ export default function Intro() {
       {/* background video  */}
       <div className="absolute top-[-10vh] left-[-10vw] h-full w-full bg-gradient-to-b">
         <iframe
-          className="h-[120vh] w-[120vw] bg-neutral-700"
+          className="h-[120vh] w-[120vw] bg-neutral-700 brightness-75"
           src="https://www.youtube.com/embed/4OiMOHRDs14?autoplay=1&mute=1"
         ></iframe>
       </div>
@@ -137,8 +140,7 @@ export default function Intro() {
           className="intro-brand fixed w-[12vw] opacity-50 invert"
         ></img>
 
-        {/* princess logo container*/}
-
+        {/* princess logo */}
         <img
           ref={h1Ref}
           src="/princess.svg"
