@@ -54,14 +54,6 @@ export default function Characters() {
   return (
     <div ref={charactersRef} className="relative h-full w-full">
       <section className="relative h-full bg-black">
-        {/* name  */}
-        {/* <div className="absolute top-0 left-1/2 z-10 -translate-x-1/2 p-4 text-center mix-blend-difference">
-          <h1 className="mb-1 text-xl tracking-wide text-neutral-300/80 uppercase">
-            {name.en}
-          </h1>
-          <h1 className="text-4xl text-neutral-300">{name.jp}</h1>
-        </div> */}
-
         {/* images container  */}
         <div
           ref={ashitakaImagesRef}

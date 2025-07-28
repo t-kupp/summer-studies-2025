@@ -78,7 +78,7 @@ export default function Intro() {
             x: -(
               window.innerWidth / 2 -
               h1Position.x -
-              (window.innerWidth / 100) * 21
+              (window.innerWidth / 100) * 20
             ),
             y: 0,
             scale: "0.7",
@@ -125,10 +125,12 @@ export default function Intro() {
     >
       {/* background video  */}
 
-      <iframe
-        className="fixed top-0 left-0 h-screen w-screen bg-neutral-700 brightness-75"
-        src="https://www.youtube.com/embed/4OiMOHRDs14?autoplay=1&mute=1"
-      ></iframe>
+      <div className="fixed top-[-10vh] left-[-10vw] h-screen w-screen brightness-75">
+        <iframe
+          className="h-[120vh] w-[120vw]"
+          src="https://www.youtube.com/embed/4OiMOHRDs14?autoplay=1&mute=1"
+        ></iframe>
+      </div>
 
       {/* intro container  */}
       <div className="intro-container flex h-full flex-col items-center justify-center">
@@ -139,7 +141,7 @@ export default function Intro() {
             top: h1Position.y - h1Size.y * 2,
             left: h1Position.x + h1Size.x / 4,
           }}
-          className="intro-brand fixed w-[12vw] opacity-50 invert"
+          className="intro-brand fixed w-[12vw] opacity-75 invert"
         ></img>
 
         {/* princess logo */}
@@ -161,7 +163,7 @@ export default function Intro() {
             top: h1Position.y + h1Size.y * 1.5,
             left: h1Position.x + h1Size.x / 4,
           }}
-          className="intro-p-container absolute w-[12vw] text-white opacity-70"
+          className="intro-p-container absolute text-white opacity-75"
         >
           <div className="overflow-hidden">
             <p className="intro-p !text-xs">“You cannot change fate.</p>
