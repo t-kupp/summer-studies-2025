@@ -2,7 +2,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-gfs: "GFS Didot, serif";
+  --font-gfs: "GFS Didot";
+  --font-future: "The Future";
 }
 
 :root {
@@ -59,6 +60,13 @@ h1 {
   font-family: "Mori";
   src: url("/fonts/PPMori-Regular.woff2") format("woff2");
   font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "The Future";
+  src: url("/fonts/TheFuture-Bold.otf") format("opentype");
+  font-weight: 700;
   font-display: swap;
 }
 

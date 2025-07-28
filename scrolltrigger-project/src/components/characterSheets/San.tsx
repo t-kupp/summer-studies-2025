@@ -14,16 +14,16 @@ export default function San({ charactersTl }: SanProps) {
     () => {
       if (!charactersTl) return;
 
-      // info container slide in
+      // move into frame
       charactersTl.from(
         sectionRef.current,
         {
           x: "100%",
           duration: 2,
-          filter: "brightness(0)",
+          filter: "brightness(0.2)",
           ease: "none",
         },
-        "<-0.3",
+        "<",
       );
 
       // fullscreen art

@@ -14,7 +14,7 @@ export default function Ashitaka({ charactersTl }: AshitakaProps) {
     () => {
       if (!charactersTl) return;
 
-      // info container
+      // move into frame
       charactersTl.from(sectionRef.current, {
         y: "120vh",
         x: "-20vw",
@@ -37,9 +37,9 @@ export default function Ashitaka({ charactersTl }: AshitakaProps) {
       //move out of frame
       charactersTl.to(sectionRef.current, {
         x: "-100%",
-        filter: "brightness(0)",
+        filter: "brightness(0.2)",
         ease: "none",
-        duration: 2,
+        duration: 2.3,
       });
     },
     { dependencies: [charactersTl], scope: sectionRef },
