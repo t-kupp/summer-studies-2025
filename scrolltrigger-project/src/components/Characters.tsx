@@ -1,24 +1,28 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useGSAPContext } from "../context/GSAPContext";
+import Ashitaka from "./characterSheets/Ashitaka";
+import Gods from "./characterSheets/Gods";
+import San from "./characterSheets/San";
 
 export default function Characters() {
   const { masterTl } = useGSAPContext();
+  const horizontalSliderRef = useRef(null);
   const charactersRef = useRef(null);
-  const ashitakaImagesRef = useRef(null);
-  const ashitakaInfoRef = useRef(null);
+  const [charactersTl, setCharactersTl] = useState<GSAPTimeline | null>(null);
 
   useGSAP(
     () => {
+      console.log("Characters useGSAP running, masterTl:", masterTl);
       if (!masterTl) return;
       gsap.registerPlugin(ScrollTrigger);
 
-      const charactersTl = gsap.timeline();
+      const timeline = gsap.timeline();
 
       // bringing the characters container in from the bottom
-      charactersTl.from(charactersRef.current, {
+      timeline.from(charactersRef.current, {
         y: "100vh",
       });
 
@@ -28,8 +32,8 @@ export default function Characters() {
       const gap = (columns - 1) * 4;
       const xPercent = columns * columnWidthPercent - 100;
       const xValue = (window.innerWidth * xPercent) / -100 - gap;
-      charactersTl.to(
-        ashitakaImagesRef.current,
+      timeline.to(
+        horizontalSliderRef.current,
         {
           x: xValue,
           duration: 2,
@@ -38,96 +42,66 @@ export default function Characters() {
         "+=0.1",
       );
 
-      // info container
-      charactersTl.from(ashitakaInfoRef.current, {
-        y: "120vh",
-        x: "-20vw",
-        rotate: 10,
-        duration: 1.5,
-      });
-
-      masterTl.add(charactersTl, "-=0.75");
+      // Set the state with the timeline
+      setCharactersTl(timeline);
+      masterTl.add(timeline, "-=0.75");
     },
     { dependencies: [masterTl], scope: charactersRef },
   );
 
   return (
-    <div ref={charactersRef} className="relative h-full w-full">
-      <section className="relative h-full bg-black">
-        {/* images container  */}
-        <div
-          ref={ashitakaImagesRef}
-          className="grid h-full grid-cols-[repeat(5,40vw)] grid-rows-1 gap-1 border-4 border-black"
-        >
-          <div className="relative">
-            <p className="font-gfs absolute p-2 !text-lg">Ashitaka アシタカ</p>
-            <img
-              src="/characters/ashitaka-concept.png"
-              className="h-full w-full bg-white object-contain"
-              alt=""
-            />
-          </div>
-          <div className="relative">
-            <p className="font-gfs absolute p-2 !text-lg">San サン</p>
-            <img
-              src="/characters/san-concept.png"
-              className="h-full w-full bg-white object-contain"
-              alt=""
-            />
-          </div>
-          <div className="relative">
-            <p className="font-gfs absolute p-2 !text-lg">
-              Lady Eboshi エボシ御前
-            </p>
-            <img
-              src="/characters/lady-eboshi-concept.png"
-              className="h-full w-full bg-white object-contain"
-              alt=""
-            />
-          </div>
-          <div className="relative">
-            <p className="font-gfs absolute p-2 !text-lg">Nago ナゴ</p>
-            <img
-              src="/characters/ashitaka-shooting-concept.png"
-              className="h-full w-full bg-white object-contain"
-              alt=""
-            />
-          </div>
-          <div className="relative">
-            <p className="font-gfs absolute p-2 !text-lg">Kodama コダマ</p>
-            <img
-              src="/characters/kodama-concept.png"
-              className="h-full w-full bg-white object-contain"
-              alt=""
-            />
-          </div>
-        </div>
-        {/* info container */}
-        <div
-          ref={ashitakaInfoRef}
-          className="absolute top-0 left-0 z-10 grid h-full w-full grid-cols-2 gap-4 bg-[#1B3C53] p-8"
-        >
-          <div className="text-white">
-            <h1 className="font-gfs mb-1 text-6xl">Ashitaka</h1>
-            <h1 className="mb-4 text-2xl">アシタカ</h1>
-            <p className="max-w-xs">
-              A young warrior prince from the Emishi clan who becomes cursed
-              after killing a demon boar that attacked his village.
-              <br /> <br />
-              The curse manifests as a spreading mark on his arm that gives him
-              supernatural strength but will eventually kill him.
-              <br /> <br />
-              He rides Yakul, a red elk that serves as both his loyal mount and
-              companion
-            </p>
-          </div>
+    <div ref={charactersRef} className="relative h-full w-full bg-black">
+      {/* horizontal image slider  */}
+      <div
+        ref={horizontalSliderRef}
+        className="grid h-full grid-cols-[repeat(5,40vw)] grid-rows-1 gap-1 border-4 border-black"
+      >
+        <div className="relative">
+          <p className="font-gfs absolute p-2 !text-lg">Ashitaka アシタカ</p>
           <img
-            className="h-full w-full border-2 border-white object-cover"
-            src="/characters/ashitaka-main.png"
+            src="/characters/concept/ashitaka-concept.png"
+            className="h-full w-full bg-white object-contain"
             alt=""
           />
         </div>
-      </section>
+        <div className="relative">
+          <p className="font-gfs absolute p-2 !text-lg">San サン</p>
+          <img
+            src="/characters/concept/san-concept.png"
+            className="h-full w-full bg-white object-contain"
+            alt=""
+          />
+        </div>
+        <div className="relative">
+          <p className="font-gfs absolute p-2 !text-lg">
+            Lady Eboshi エボシ御前
+          </p>
+          <img
+            src="/characters/concept/lady-eboshi-concept.png"
+            className="h-full w-full bg-white object-contain"
+            alt=""
+          />
+        </div>
+        <div className="relative">
+          <p className="font-gfs absolute p-2 !text-lg">Nago ナゴ</p>
+          <img
+            src="/characters/concept/ashitaka-shooting-concept.png"
+            className="h-full w-full bg-white object-contain"
+            alt=""
+          />
+        </div>
+        <div className="relative">
+          <p className="font-gfs absolute p-2 !text-lg">Kodama コダマ</p>
+          <img
+            src="/characters/concept/kodama-concept.png"
+            className="h-full w-full bg-white object-contain"
+            alt=""
+          />
+        </div>
+      </div>
+      <Ashitaka charactersTl={charactersTl} />
+      <San charactersTl={charactersTl} />
+      <Gods charactersTl={charactersTl} />
     </div>
   );
 }

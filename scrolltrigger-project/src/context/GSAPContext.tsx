@@ -55,5 +55,8 @@ export default function GSAPProvider({
 
 export const useGSAPContext = () => {
   const context = useContext(GSAPContext);
+  if (context === undefined) {
+    throw new Error("useGSAPContext must be used within a GSAPProvider");
+  }
   return context;
 };
